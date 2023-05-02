@@ -14,7 +14,7 @@ function Sidebar(props: SidebarProps) {
         <div className="sidebar">
             <div className="sidebar-items">
                 {
-                    [SimulationType.Quaternions, SimulationType.Quadcopter, SimulationType.DoublePendulum].map((simulationType) => {
+                    [SimulationType.Quaternions, SimulationType.Quadcopter, SimulationType.DoublePendulum, SimulationType.DoublePendulum3Joints].map((simulationType) => {
                         return (
                             <button className={curSim == simulationType ? "sidebar-item-selected" : "sidebar-item"}
                                 key={simulationType}
@@ -59,12 +59,14 @@ enum SimulationType {
     Quaternions = "Quaternions",
     Quadcopter = "Quadcopter",
     DoublePendulum = "DoublePendulum",
+    DoublePendulum3Joints = "DoublePendulum3Joints"
 }
 
 enum SimulationInfo {
     Quaternions = "Input data is a\n\n[ [time, *flat rotation matrix] ]",
     Quadcopter = "Input data is a\n\n[ [time, *flat rotation matrix] ]",
     DoublePendulum = "Input data is a\n\n[ [time, theta1, theta2, x] ]",
+    DoublePendulum3Joints = "Input data is [time, x1, y1, x2, y2, x3, y3]"
 }
 
 export { Sidebar };

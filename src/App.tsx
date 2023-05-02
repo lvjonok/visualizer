@@ -4,10 +4,11 @@ import { OrbitControls, Text } from '@react-three/drei'
 import { Sidebar } from './sidebar'
 import QuaternionScene from './quaternions'
 import DoublePendulum from './pendulum'
+import DoublePendulum3Joints from './double_pendulum'
 
 
 function App() {
-  const [curSim, setCurSim] = useState('Quaternions' as 'Quaternions' | 'Quadcopter' | 'DoublePendulum')
+  const [curSim, setCurSim] = useState('Quaternions' as 'Quaternions' | 'Quadcopter' | 'DoublePendulum' | 'DoublePendulum3Joints')
 
   const [file, setFile] = useState<File | null>(null);
 
@@ -60,6 +61,17 @@ function App() {
               />
               <OrbitControls />
             </> : <></>
+        }
+        {
+          curSim == 'DoublePendulum3Joints' && file ?
+          <>
+          <ambientLight />
+          <DoublePendulum3Joints
+            file={file}
+            setSimTime={(time) => setSimTime(time)}
+          />
+          <OrbitControls />
+        </> : <></>
         }
       </Canvas> : <></>
     </div>
